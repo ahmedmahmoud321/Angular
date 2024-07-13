@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -6,5 +6,30 @@ import { Component } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+  siteURL = window.location.href;
+  title = 'GodaDev';
+  logo = 'assets/images/logo.png';
+  menu = [
+    {
+      name: 'Home',
+      link: '/'
+    },
+    {
+      name: 'About',
+      link: '/about'
+    },
+    {
+      name: 'Services',
+      link: '/services'
+    },
+    {
+      name: 'Contact',
+      link: '/contact'
+    }
+  ];
 
+
+
+
+  protected readonly name = name;
 }

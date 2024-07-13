@@ -10,6 +10,20 @@
 <body>
 
 <app-header></app-header>
+<div class="container">
+  {{ doExampleFunction() }}
+  {{ 20 + 20 }}
+  {{ title }}
+  <br>
+  <!-- Property binding -->
+  <img [src]="imageUrl" alt="Placeholder Image">
+  <br>
+  <img [src]="imageUrl" [hidden]="displayImage" alt="Placeholder Image">
+  <br>
+  <input type="text" (mouseover)="onMouseOver()" (input)="onWrite($event)">
+  <p [textContent]="theText"></p>
+
+</div>
 
 <app-footer></app-footer>
 

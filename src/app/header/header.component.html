@@ -5,10 +5,10 @@
         <ul class="main-links">
           <li><a href="/company">Company</a></li>
           <li><a href="/projects">Projects</a></li>
-          <li class="mobile-hide"><a href="/technologies">Technologies </a></li>
-          <li class="mobile-hide"><a href="/about/">About</a></li>
-          <li class="desktop-hide"><a href="/contact/">Contact</a></li>
-          <li class="desktop-hide"><a href="/careers/">Careers</a></li>
+          <li class="mobile-hide"><a href="{{siteURL}}/technologies">Technologies</a></li>
+          <li class="mobile-hide"><a href="{{siteURL}}/about">About</a></li>
+          <li class="desktop-hide"><a href="{{siteURL}}/contact">Contact</a></li>
+          <li class="desktop-hide"><a href="{{siteURL}}/careers">Careers</a></li>
         </ul>
       </div>
       <div class="right mobile-hide">
@@ -25,7 +25,7 @@
     <div class="container">
       <div class="logo">
         <a href="/">
-          <img src="/img/icons/logo-website-bold.svg" alt="GodaDev">
+          <img src="/img/icons/logo-website-bold.svg" alt="{{title}}">
         </a>
       </div>
       <img class="burger" onclick="document.body.classList.toggle('open')" src="/img/icons/menu.svg"
@@ -53,8 +53,9 @@
 
   <div style="display:none;">
     <div class="dropdown-content">
-      <div style="background-color:#f0f3fa;padding:23px 70px;display:flex;gap:20px;align-items:center;justify-content:center"
-           class="fullscreen-data">
+      <div
+        style="background-color:#f0f3fa;padding:23px 70px;display:flex;gap:20px;align-items:center;justify-content:center"
+        class="fullscreen-data">
         <div class="header-popup-tab"
              style="border-radius:16px;height:200px;width:25%;box-shadow:0 0 18px rgba(36, 106, 255, .08);padding:35px 24px;background:url(/img/main/book.png);background-repeat: no-repeat;background-size: contain;background-position: right bottom;background-size: 150px;">
           {{/* <img style="height: 140px;width:100%;object-fit:contain" src="/img/main/book.png"> */}}
@@ -62,7 +63,8 @@
           <p style="font-size:13px;font-weight:500;color:gray;">Elevate your business with our transformative
             software solutions, optimizing processes, enhancing efficiency, and driving innovation across
             your organization.</p>
-          <img style="height:20px;display:block;margin:10px 0;background-color:white;border-radius: 10px; padding:10px;" src="/img/main/diagram.svg"></div>
+          <img style="height:20px;display:block;margin:10px 0;background-color:white;border-radius: 10px; padding:10px;"
+               src="/img/main/diagram.svg"></div>
         <div class="header-popup-tab"
              style="background-color:white;border-radius:16px;height:200px;width:70%;;box-shadow:0 0 18px rgba(36, 106, 255, .08);display:flex;align-items: center;">
           <div style="display: flex;;flex-direction: column;width: 49%;height: 100%;"></div>
