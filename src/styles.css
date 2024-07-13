@@ -1,1 +1,710 @@
-/* You can add global styles to this file, and also import other style files */
+/*-----------------------------------*\
+  #CUSTOM PROPERTY
+\*-----------------------------------*/
+
+
+:root {
+  --primary-color: rgb(0, 119, 255);
+  --secondary-color: #6c757d;
+  --secondary-dark-color: #343a40;
+  --white-color: #fff;
+  --light-bg-color: #b7b7b7;
+  --border-color: #5e5e5e;
+  --dark-color: #343a40;
+  --cultured: hsl(0, 0%, 93%);
+  --spanish-gray: hsl(0, 0%, 60%);
+  --sonic-silver: hsl(0, 0%, 47%);
+  --eerie-black: hsl(0, 0%, 13%);
+  --davys-gray: hsl(0, 0%, 33%);
+  --white: hsl(0, 100%, 100%);
+  --onyx: hsl(0, 0%, 27%);
+
+  --percentage100: 100%;
+  --percentage50: 50%;
+
+  --font-small: 13px;
+  --font-smaller: 11px;
+  --font-medium: 15px;
+
+  --fs-1: 1.563rem;
+  --fs-2: 1.375rem;
+  --fs-3: 1.25rem;
+  --fs-4: 1.125rem;
+  --fs-5: 1rem;
+  --fs-6: 0.938rem;
+  --fs-7: 0.875rem;
+  --fs-8: 0.813rem;
+  --fs-9: 0.75rem;
+  --fs-10: 0.688rem;
+  --fs-11: 0.625rem;
+
+  --fw3: 300;
+  --fw4: 400;
+  --fw5: 500;
+  --fw6: 600;
+  --fw7: 700;
+  --fw8: 800;
+
+
+  --border-radius-md: 10px;
+  --border-radius-sm: 5px;
+
+
+  --transition-timing: 0.2s ease;
+
+  --trans-background-color: background-color .3s;
+  --trans-color: color .3s;
+}
+
+
+
+
+*,
+::before,
+::after {
+  box-sizing: border-box;
+}
+
+li {
+  list-style: none;
+}
+
+ul {
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+img {
+  max-width: var(--percentage100);
+  vertical-align: middle;
+}
+
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Poppins', sans-serif;
+}
+
+
+h1 {
+  font-size: calc(1.3em + 1vw);
+  font-weight: var(--fw8);
+  line-height: 1;
+}
+
+h2 {
+  font-size: 2.5em;
+}
+
+h3 {
+  font-size: 1.2em;
+  font-weight: var(--fw7);
+}
+
+h4 {
+  font-size: 1em;
+  font-weight: var(--fw6);
+}
+
+span {
+  display: inline-block;
+}
+
+html {
+  font-family: "Poppins", sans-serif;
+  overscroll-behavior: contain;
+}
+
+button {
+  border: none;
+  padding: 1em;
+  background-color: #0077f9;
+  color: white;
+  cursor: pointer;
+  border-radius: 2em;
+
+
+}
+
+/*input {*/
+/*    display: block;*/
+/*    width: 100%;*/
+/*    font: inherit;*/
+/*}*/
+
+input::placeholder {
+  font: inherit;
+}
+
+body {
+  background-color: var(--white-color);
+  overflow-x: hidden;
+
+}
+
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+strong {
+  font-width: var(--fw8);
+}
+
+input::placeholder {
+  font: inherit;
+}
+
+
+.float {
+  float: left;
+}
+
+.clear {
+  clear: both;
+}
+
+.overflow-auto {
+  overflow: auto;
+}
+
+.container {
+  position: relative;
+  max-width: 1310px;
+  margin: 0 auto;
+  height: 100%;
+
+
+}
+
+
+/*
+ Scrollbar Style
+ */
+
+body::-webkit-scrollbar {
+  width: 15px;
+}
+
+body::-webkit-scrollbar-track {
+  background: var(--white-color);
+  border-left: 1px solid var(--cultured);
+}
+
+body::-webkit-scrollbar-thumb {
+  background: hsl(0, 0%, 80%);
+  border: 3px solid var(--white-color);
+  border-radius: 10px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+  background: hsl(0, 0%, 70%);
+}
+
+
+.hover-shadow {
+  transition: box-shadow 0.2s;
+}
+
+.hover-shadow:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+
+.hover-zoom-small {
+  transition: transform 0.2s;
+
+}
+
+.hover-zoom-small:hover {
+  transform: scale(1.01);
+}
+
+.hover-zoom-medium {
+  transition: transform 0.2s;
+
+}
+
+.hover-zoom-medium:hover {
+  transform: scale(1.03);
+}
+
+.hover-zoom {
+  transition: transform 0.2s;
+
+}
+
+.hover-zoom:hover {
+  transform: scale(1.1);
+}
+
+
+
+
+.button-hover-dark {
+  transition: transform 0.2s;
+}
+
+.button-hover-dark:hover {
+  transform: scale(1.01);
+  background-color: #004085;
+  color: white;
+}
+
+
+.text-hover-bold:hover {
+  font-weight: bold;
+
+}
+
+
+/* Reused Style */
+
+
+.icon-small,
+.icon-large {
+  display: flex;
+  align-items: center;
+  padding: 0 0.25em;
+  font-weight: normal;
+}
+
+.icon-small {
+  font-size: 1.25em;
+}
+
+.icon-large {
+  font-size: 1.75em;
+  padding: 0 0.75em 0 0;
+}
+
+.text-hover-primary:hover {
+  color: var(--primary-color);
+  cursor: default;
+}
+
+
+.has-scrollbar {
+  padding-bottom: 5px;
+}
+
+.has-scrollbar::-webkit-scrollbar {
+  width: 12px;
+  /* for vertical scroll */
+  height: 12px;
+  /* for horizontal scroll */
+}
+
+.has-scrollbar::-webkit-scrollbar-thumb {
+  background: transparent;
+  border: 3px solid var(--white-color);
+  border-radius: 20px;
+}
+
+.has-scrollbar:hover::-webkit-scrollbar-thumb {
+  background: hsl(0, 0%, 90%);
+}
+
+.has-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: hsl(0, 0%, 80%);
+}
+
+.title {
+  color: var(--eerie-black);
+  font-size: var(--fs-5);
+  font-weight: var(--weight-600);
+  text-transform: capitalize;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--cultured);
+  margin-bottom: 30px;
+}
+
+
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap;
+
+}
+
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-item {
+  display: flex;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+
+
+header {
+  position: relative;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+  background-color: white;
+}
+
+
+header li>a {
+  display: flex;
+  position: relative;
+
+  transition: var(--trans-background-color);
+}
+
+
+
+
+
+
+
+
+.header-top li:hover ul {
+  display: block;
+}
+
+
+.header-top .mobile-hide ul ul li.current a {
+  background-color: var(--border-color);
+
+}
+
+
+/* Nav Header Links */
+.main-links a:hover {
+  color: var(--primary-color)
+}
+
+.second-links a:hover {
+  color: var(--border-color);
+}
+
+
+
+
+/*
+
+<link rel="stylesheet" href="/css/header/header-desktop-navigation-menu.css">
+
+*/
+
+
+.desktop-navigation-menu .mobile-hide a:hover .ri-arrow-down-s-line {
+  transition: 1s;
+  transform: rotate(180deg);
+}
+
+.desktop-navigation-menu .mobile-hide a:hover {
+  color: var(--primary-color);
+}
+
+.desktop-navigation-menu .mobile-hide a .ri-arrow-down-s-line {
+  width: fit-content;
+  height: fit-content;
+  transform: rotate(0deg);
+  transition: 1s;
+
+}
+
+nav .fly-item {
+  top: 50%;
+  margin-top: -24px;
+  border-radius: 3px;
+  right: -32px;
+  background-color: var(--primary-color);
+}
+
+
+.fly-item {
+  position: absolute;
+  font-size: var(--font-small);
+  height: 16px;
+  padding: 3px;
+  text-align: center;
+  line-height: 10px;
+  color: var(--white-color);
+  background-color: var(--primary-color);
+  border-radius: 5px;
+  right: -30px;
+  bottom: 1.5em;
+}
+
+
+
+
+/*
+<link rel="stylesheet" href="/css/header/header-drop-down-panel.css">
+*/
+
+.header-main {
+  background-color: #007bff;
+  padding: 1.5em 0;
+  margin-bottom: 2em;
+  width: 100%;
+
+}
+
+.header-main .right {
+  max-width: 600px;
+  flex: 1;
+}
+
+.dpt-cat {
+  z-index: 10;
+  border-radius: 10px;
+  margin-top: 30px;
+  position: absolute;
+  top: 100%;
+  overflow: visible;
+  box-shadow: #6c757d 0 0 1px;
+  right: 100px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s, visibility 0.5s;
+
+
+}
+
+.desktop-navigation-menu .mobile-hide li:hover .dpt-cat {
+  opacity: 1;
+  visibility: visible;
+
+
+}
+
+
+.dpt-cat .dpt-head {
+  position: relative;
+  width: 300px;
+  background-color: black;
+  padding: 0.75em 1.5em;
+  border-radius: 7px 7px 0 0;
+  color: white;
+  z-index: 10000;
+  margin-bottom: -2em;
+}
+
+.dpt-cat .dpt-head .mini-text {
+  color: var(--light-bg-color)
+}
+
+.dpt-cat .dpt-trigger {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 1.3em;
+}
+
+
+.header-main .mini-text {
+  font-size: var(--font-small)
+}
+
+
+
+
+
+
+/* should be responsive */
+/* list items*/
+.dpt-menu {
+  position: absolute;
+  top: var(--percentage100);
+  width: 300px;
+  background-color: black;
+  color: white;
+  border: 1px solid var(--eerie-black);
+  border-top: 0;
+  border-bottom: 0;
+}
+
+
+.dpt-menu>ul>li>a {
+  white-space: nowrap;
+  padding: 10px 25px;
+  align-items: center;
+  border-top: 1px solid var(--eerie-black);
+
+}
+
+
+.dpt-menu>ul>li>ul>li a:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+
+}
+
+.dpt-menu>ul>li>a .icon-small {
+  color: var(--white-color);
+
+}
+
+
+.dpt-menu .has-child>ul,
+.dpt-menu .mega {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  width: 100%;
+  min-width: fit-content;
+  white-space: nowrap;
+  height: auto;
+  min-height: 100%;
+  padding: 1.5em;
+  font-size: var(--font-small);
+  line-height: 2.5em;
+  border: 1px solid var(--eerie-black);
+  visibility: hidden;
+  background-position: right bottom;
+  background-repeat: no-repeat;
+  background-color: black;
+  background-size: auto;
+}
+
+.dpt-menu .has-child:hover :is(.mega, ul) {
+  visibility: visible;
+
+}
+
+
+
+.dpt-menu .has-child .mega ul {
+  padding-right: 2em;
+  padding-bottom: 2em;
+}
+
+
+
+
+
+/*.dpt-menu .has-child > :where(ul,.mega)::before {*/
+/*    position: absolute;*/
+/*    content: '';*/
+/*    top: 0;*/
+/*    left: 0;*/
+/*    right: 0;*/
+/*    bottom: 0;*/
+/*    background-color: black;*/
+/*    opacity: 50%;*/
+/*}*/
+
+
+/*
+
+
+
+/*
+<link rel="stylesheet" href="/css/responsive.css">
+
+*/
+
+
+
+/*
+
+<link rel="stylesheet" href="/css/pagination.css">
+
+*/
+
+.pagination-default {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.pagination-default li {
+  padding: 10px;
+  border: 1px solid rgba(0, 0, 0, 0.20);
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.pagination-default .active {
+  background-color: black;
+  color: white;
+  font-weight: bold;
+}
+
+.first-post {
+  background-color: #063a1a;
+  padding: 20px;
+  border-radius: 20px;
+  width: 100%;
+}
+
+.other-posts {
+  background-color: #007bf9;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+
+
+/*
+
+<link rel="stylesheet" href="/css/search.css">
+
+*/
+
+/* Style for the dropdown container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Style for the search input field */
+.search-input {
+  padding: 15px 40px;
+  border-radius: 15px;
+  border: 1px solid #007bff;
+  width: 100%;
+  color: rgba(0, 0, 0, 0.8)
+}
+
+/* Style for the dropdown content */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  height: fit-content;
+  overflow-y: hidden;
+  max-height: 50vh;
+  width: 200px;
+  border: 1px solid #ccc;
+  border-top: none;
+  border-radius: 0 0 4px 4px;
+  z-index: 100;
+}
+
+/* Style for the individual search results */
+.dropdown-item {
+  padding: 10px;
+  cursor: pointer;
+}
+
+/* Highlight the matching text in search results */
+.highlight {
+  background-color: rgba(0, 123, 255, 0.52);
+}
+
+
+.active {
+  display: block;
+}

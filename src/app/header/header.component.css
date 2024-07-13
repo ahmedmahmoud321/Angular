@@ -1,0 +1,216 @@
+nav {
+  border-bottom: 1px solid #eee;
+}
+
+
+.mobile-hide {
+  display: block;
+
+}
+
+.desktop-hide {
+  display: none;
+}
+
+.header-top {
+  padding: 20px 0 0 0;
+  height: 50px
+}
+
+.header-top .container {
+
+  display: flex;
+  font-size: 13px;
+  justify-content: space-between;
+
+}
+
+.header-top .container .left {
+  font-family: sans-serif;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.header-top .container .left .main-links {
+  display: flex;
+  gap: 2em;
+
+}
+
+.header-top .container .right .main-links {
+  display: flex;
+  gap: 2em
+}
+
+.header-top .container .right {
+  font-family: sans-serif;
+  font-weight: bold
+}
+
+body.open .header-bottom .container .menu-items {
+  display: flex;
+}
+
+.dropdown-content {
+  display: block;
+  position: absolute;
+  background-color: white;
+  min-width: 100%;
+  top: 1;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.fullscreen-data {
+  width: 100%;
+  min-width: 100%;
+  height: fit-content;
+  background-color: white;
+
+}
+
+
+@media (width <= 700px) {
+
+  .header-top .container {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .header-top .main-links {
+    justify-content: space-between;
+
+  }
+
+
+  .header-top .container .left {
+    width: 80%;
+
+
+  }
+
+  .header-top .wrapper {
+    justify-content: center;
+  }
+
+  .desktop-hide {
+    display: block;
+  }
+
+  .mobile-hide {
+    display: none;
+  }
+
+  .fly-item,
+  .arrow-solutions {
+    display: none;
+  }
+
+  .logo {
+    padding: 15px 20px;
+  }
+
+
+}
+
+
+/*  Header Bottom  */
+
+.header-bottom .logo a img {
+  width: 200px
+}
+
+
+.header-bottom .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-bottom .container .burger {
+  width: 30px;
+  display: none;
+  cursor: pointer;
+  transition: all;
+}
+
+.header-bottom .container .menu-items {
+  display: flex;
+
+}
+
+.header-bottom .container .menu-items .menu-left {
+  display: flex;
+  gap: 34px;
+  padding: 30px 0;
+}
+
+
+@media (width <= 700px) {
+
+  .header-bottom .container .burger {
+    width: 30px;
+    display: block;
+    margin-left: auto;
+  }
+
+  .header-bottom .container .menu-items {
+    display: none;
+    width: 100%;
+    flex-direction: column;
+    gap: 10px;
+    max-height: fit-content;
+    top: 100%;
+    position: absolute;
+    left: 0;
+    right: 0;
+    color: white;
+    background: black;
+  }
+
+  .header-bottom .container .menu-items .menu-left {
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .header-bottom .container .menu-items .menu-left a {
+    border-bottom: 1px solid rgba(48, 54, 61, 0.22);
+    border-top: 1px solid rgba(48, 54, 61, 0.22);
+    padding: 18px 20px;
+  }
+
+  .header-bottom .container .menu-items .menu-left a:hover {
+    background-color: white;
+    color: black;
+  }
+
+  .header-top .left {
+    animation-name: display;
+  }
+
+
+  .header-bottom .logo a img {
+    width: 170px
+  }
+
+}
+
+
+.header-popup-tab {
+  border: 1px solid white;
+
+}
+
+.header-popup-tab:hover {
+  border: 1px solid #7cbbff;
+  scale: 1.02;
+  transition: 0.2s;
+
+}
