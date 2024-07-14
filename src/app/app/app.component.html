@@ -23,7 +23,46 @@
   <input type="text" (mouseover)="onMouseOver()" (input)="onWrite($event)">
   <p [textContent]="theText"></p>
 
+
+  <!-- Two way data binding -->
+
+  <input [(ngModel)]="twoWayBindingText" type="text">
+  <p>{{ twoWayBindingText }}</p>
+
+
+  <!--  Directives  -->
+  <!--  ngFor  -->
+  <ul style="display: flex;gap: 15px;">
+    <li *ngFor="let i of [1, 2, 3, 4, 5]">{{ i }}</li>
+  </ul>
+  <ul style="display: flex;gap: 15px;">
+    <li *ngFor="let item of items">{{ item }}</li>
+  </ul>
+
+  <ul style="display: flex;gap: 15px;font-weight: bold">
+    <li *ngFor="let product of products">
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.price }}</p>
+      <p [ngStyle]="{color:product.isAvailable ? 'green': 'red'}">{{ product.isAvailable }}</p>
+      <div>
+        <button (click)="product.isAvailable = !product.isAvailable">Toggle Availability</button>
+        <button *ngIf="product.isAvailable">Buy Now</button>
+      </div>
+
+
+    </li>
+  </ul>
+
+
+  <!-- ngIf -->
+
+  <input type="text" [(ngModel)]="searchInputText">
+  <span style="display: flex" *ngIf="searchInputText != ''">
+    <p> You searched for:</p>
+    <p style="background-color: #3b5998;height: 20px">{{ searchInputText }}</p>
+  </span>
 </div>
+
 
 <app-footer></app-footer>
 

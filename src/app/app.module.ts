@@ -6,6 +6,7 @@ import { AppComponent } from './app/app.component';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -14,10 +15,11 @@ import { FooterComponent } from './footer/footer.component';
     HeaderComponent,
     FooterComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule
+    ],
   providers: [],
   // bootstrap means the component which will be treated as main component
   bootstrap: [AppComponent]

@@ -210,6 +210,10 @@ export class HomeComponent {
 <p>{{textExample}}</p>
 ```
 
+    to do this previously we needed to send the data to the component 
+    using event binding then get the string from the event then assign it to
+    variable then display with string interpolation
+
 ### Directives
 
 Directives are instructions in the DOM that extend HTML capabilities by allowing you to create custom behaviors and manipulate the DOM.
@@ -222,6 +226,30 @@ Directives are instructions in the DOM that extend HTML capabilities by allowing
 #### Structural Directives
 
 Structural directives are used to add or remove elements from the DOM based on a condition.
+
+> ⚠️ **Important:** The `*` should be used with structural directives.
+
+1. **ngFor**
+
+   used to loop through an array of items and display each item.
+
+  ```html
+<!-- Loop over numbers -->
+<ul>
+  <li *ngFor="let i of [1, 2, 3, 4, 5]">{{i}}</li>
+</ul>
+```
+
+```ts
+  items: string[] = ['item1', 'item2', 'item3', 'item4', 'item5'];
+```
+
+```html
+
+<ul>
+  <li *ngFor="let item of items">{{item}}</li>
+</ul>
+```
 
 1. **ngIf**
    used to add or remove an element from the DOM based on a condition.
@@ -252,14 +280,45 @@ export class HomeComponent {
 <button (click)="showElement = !showElement">Toggle</button>
 ```
 
-2. **ngFor**
 3. **ngSwitch**
 
 #### Attribute Directives
 
-Attribute directives are used to change the appearance or behavior of an element, component, or another directive.
+Attribute directives are used to change the appearance or behavior of an element, component, or another directive.\
+used as an attribute in the html tag to change look or behaviour of the element
 
 1. **ngStyle**
+   Used to change style of an element regarding a condition.
+
+```ts
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
+})
+export class HomeComponent {
+  title = 'Home Component';
+  isRed = true;
+
+  products = [
+    {name: 'Product 1', price: 100, isAvailable: true},
+    {name: 'Product 2', price: 200, isAvailable: false},
+    {name: 'Product 3', price: 300, isAvailable: true},
+    {name: 'Product 4', price: 400, isAvailable: false},
+  ];
+}
+```
+
+```html
+
+<div [ngStyle]="{'color': 'red'}">Hello World</div>
+<div [ngStyle]="{'color': isRed ? 'red' : 'blue'}">Hello World</div>
+
+<div *ngFor="let product of products" [ngStyle]="{'color': product.isAvailable ? 'green' : 'red'}">
+  {{product.name}}
+</div>
+```
+
 2. **ngClass**
 3. **ngModel**
 
@@ -268,6 +327,34 @@ Attribute directives are used to change the appearance or behavior of an element
 Angular provides several built-in directives for common tasks.
 
 1. **ngIf**
+   Used to add or remove an element from the DOM based on a condition.
+
+```html
+
+<div *ngIf="true">Hello World</div>
+```
+
+```ts
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
+})
+export class HomeComponent {
+  title = 'Home Component';
+  showElement = true;
+  searchInput = '';
+}
+```
+
+```html
+ <div *ngIf="showElement">Hello World</div>
+<input [(ngModel)]="searchInput" />
+<!-- i i want only when the searchInput is not empty to display this text <p>-->
+
+<p *ngIf="searchInput != ''" >{{searchInput}}</p>
+```
+
 2. **ngFor**
 3. **ngSwitch**
 4. **ngClass**
