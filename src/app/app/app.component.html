@@ -61,6 +61,12 @@
     <p> You searched for:</p>
     <p style="background-color: #3b5998;height: 20px">{{ searchInputText }}</p>
   </span>
+
+
+  <div [ngClass]="{addBorder: addBorderNGClass}">
+    <p>ngClass Directive</p>
+  <button (click)="addBorderNGClass = !addBorderNGClass">Toggle Border</button>
+  </div>
 </div>
 
 

@@ -319,8 +319,36 @@ export class HomeComponent {
 </div>
 ```
 
-2. **ngClass**
-3. **ngModel**
+**ngClass**
+
+Used to add or remove a class from an element based on a condition.
+
+
+```css
+.addBorder {
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 10px;
+}
+
+```
+
+```ts
+export class HomeComponent {
+  title = 'Home Component';
+  isRed = true;
+}
+```
+
+
+
+
+```html
+<div [ngClass]="{addBorder: true}">Hello World</div>
+```
+
+
+
 
 #### Built-in Directives
 
@@ -354,12 +382,6 @@ export class HomeComponent {
 
 <p *ngIf="searchInput != ''" >{{searchInput}}</p>
 ```
-
-2. **ngFor**
-3. **ngSwitch**
-4. **ngClass**
-5. **ngStyle**
-6. **ngModel**
 
 
 

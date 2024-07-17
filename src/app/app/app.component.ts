@@ -18,6 +18,7 @@ export class AppComponent {
     {id: 3, name: 'product3', price: 300, isAvailable: true},
   ]
   searchInputText = '';
+  addBorderNGClass = false;
 
 
   doExampleFunction() {
