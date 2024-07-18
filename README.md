@@ -385,11 +385,6 @@ export class HomeComponent {
    Used to pass data from the parent component to the child component.
 
 ```ts
-@Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
-})
 export class HomeComponent {
   title = 'Home Component';
   textExample = 'Hello World';
@@ -397,20 +392,55 @@ export class HomeComponent {
 ```
 
 ```ts
-@Component({
-  selector: 'app-child',
-  templateUrl: './child.component.html',
-  styleUrls: ['./child.component.css'],
-})
 export class ChildComponent {
   @Input() text: string = '';
+  @Input("example") exampleText: string = '';
 }
 ```
 
 ```html
+<!-- at the home.component.html -->
 <app-child [text]="textExample"></app-child>
+<app-child [example]="textExample"></app-child>
 ```
 
 ```html
+<!-- at the child component-->
 <p>{{text}}</p>
+<p>{{exampleText}}</p>
+```
+2. **Output**
+
+   Used to pass data from the child component to the parent component.
+
+```ts
+export class HomeComponent {
+  title = 'Home Component';
+  textExample = 'Hello World';
+  textFromChild = '';
+  onTextChange(event: any) {
+    this.textFromChild = event;
+  }
+}
+```
+
+```html
+<!-- at the parent component home.component.html -->
+<app-child (textChange)="onTextChange($event)"></app-child>
+<p>{{textFromChild}}</p>
+```
+
+```ts
+export class ChildComponent {
+  @Output() textChange = new EventEmitter<string>();
+  textExample = 'Hello World';
+  onTextChange() {
+    this.textChange.emit(this.textExample);
+  }
+}
+```
+
+```html
+<!-- at the child component-->
+<button (click)="onTextChange()">Change Text</button>
 ```

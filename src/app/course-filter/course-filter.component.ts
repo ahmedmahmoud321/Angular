@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {filter} from "rxjs";
 
 @Component({
@@ -8,16 +8,21 @@ import {filter} from "rxjs";
 })
 export class CourseFilterComponent {
 
-  filter = ''
+  filter = 'all'
 
   // log the size of the courses
 
 
- @Input() allCourses = 0;
- @Input() availableCourses = 0;
- @Input() unavailableCourses = 0;
+  @Input() allCourses = 0;
+  @Input() availableCourses = 0;
+  @Input() unavailableCourses = 0;
 
+  @Output() filterChange = new EventEmitter<string>();
 
+  onRadioChange() {
+    this.filterChange.emit(this.filter);
+    console.log(this.filter);
+  }
 
 
 }

@@ -29,6 +29,7 @@ export class CourseComponent {
       isAvailable: true
     }
   ];
+  allCourses = this.courses;
 
   getAvailableCourses() {
     return this.courses.filter(course => course.isAvailable).length;
@@ -36,5 +37,15 @@ export class CourseComponent {
 
   getUnavailableCourses() {
     return this.courses.filter(course => !course.isAvailable).length;
+  }
+
+  onFilterChange($event: string) {
+    if ($event === 'all') {
+      this.courses = this.allCourses;
+    } else if ($event === 'available') {
+      this.courses = this.courses.filter(course => course.isAvailable);
+    } else {
+      this.courses = this.courses.filter(course => !course.isAvailable);
+    }
   }
 }

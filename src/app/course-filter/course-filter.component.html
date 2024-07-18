@@ -1,6 +1,8 @@
 <div class="filter-container">
   <span>Filter</span>
-  <input type="radio" name="filter" value="all" [(ngModel)]="filter"  />All ({{ allCourses }})
-  <input type="radio" name="filter" value="available" [(ngModel)]="filter" />Available ({{availableCourses}})
-  <input type="radio" name="filter" value="unavailable" [(ngModel)]="filter" />Unavailable ({{unavailableCourses}})
+  <input type="radio" name="filter" value="all" [(ngModel)]="filter" (change)="onRadioChange()"/>All ({{ allCourses }})
+  <input type="radio" name="filter" value="available" [(ngModel)]="filter" (change)="onRadioChange()"/>Available
+  ({{ availableCourses }})
+  <input type="radio" name="filter" value="unavailable" [(ngModel)]="filter" (change)="onRadioChange()"/>Unavailable
+  ({{ unavailableCourses }})
 </div>

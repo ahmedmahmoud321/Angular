@@ -1,5 +1,8 @@
-<app-course-filter [allCourses]="courses.length" [availableCourses]="getAvailableCourses()"
-                   [unavailableCourses]="getUnavailableCourses()"></app-course-filter>
+<app-course-filter [allCourses]="courses.length"
+                   [availableCourses]="getAvailableCourses()"
+                   [unavailableCourses]="getUnavailableCourses()"
+                    (filterChange)="onFilterChange($event)"
+></app-course-filter>
 
 <div style="display: grid;grid-template-columns: 33% 33% 33%;padding: 20px 5px">
   <div *ngFor="let course of courses">
