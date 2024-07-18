@@ -323,7 +323,6 @@ export class HomeComponent {
 
 Used to add or remove a class from an element based on a condition.
 
-
 ```css
 .addBorder {
   padding: 20px;
@@ -340,15 +339,10 @@ export class HomeComponent {
 }
 ```
 
-
-
-
 ```html
+
 <div [ngClass]="{addBorder: true}">Hello World</div>
 ```
-
-
-
 
 #### Built-in Directives
 
@@ -376,12 +370,47 @@ export class HomeComponent {
 ```
 
 ```html
- <div *ngIf="showElement">Hello World</div>
-<input [(ngModel)]="searchInput" />
+
+<div *ngIf="showElement">Hello World</div>
+<input [(ngModel)]="searchInput"/>
 <!-- i i want only when the searchInput is not empty to display this text <p>-->
 
-<p *ngIf="searchInput != ''" >{{searchInput}}</p>
+<p *ngIf="searchInput != ''">{{searchInput}}</p>
 ```
 
+### Child Component
 
+1. **Input**
 
+   Used to pass data from the parent component to the child component.
+
+```ts
+@Component({
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
+})
+export class HomeComponent {
+  title = 'Home Component';
+  textExample = 'Hello World';
+}
+```
+
+```ts
+@Component({
+  selector: 'app-child',
+  templateUrl: './child.component.html',
+  styleUrls: ['./child.component.css'],
+})
+export class ChildComponent {
+  @Input() text: string = '';
+}
+```
+
+```html
+<app-child [text]="textExample"></app-child>
+```
+
+```html
+<p>{{text}}</p>
+```

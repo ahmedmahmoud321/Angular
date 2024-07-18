@@ -21,6 +21,7 @@ export class AppComponent {
   addBorderNGClass = false;
 
 
+
   doExampleFunction() {
     // console.log('Example function');
     return 'Example function';

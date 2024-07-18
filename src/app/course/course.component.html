@@ -1,0 +1,14 @@
+<app-course-filter [allCourses]="courses.length" [availableCourses]="getAvailableCourses()"
+                   [unavailableCourses]="getUnavailableCourses()"></app-course-filter>
+
+<div style="display: grid;grid-template-columns: 33% 33% 33%;padding: 20px 5px">
+  <div *ngFor="let course of courses">
+    <h3>{{ course.title }}</h3>
+    <p>{{ course.description }}</p>
+    <p [ngStyle]="{color: course.isAvailable ? 'green' : 'red'}">{{ course.isAvailable }}</p>
+    <div>
+      <button (click)="course.isAvailable = !course.isAvailable">Toggle Availability</button>
+      <button *ngIf="course.isAvailable">Buy Now</button>
+    </div>
+  </div>
+</div>
