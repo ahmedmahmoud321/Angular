@@ -20,6 +20,12 @@ export class AppComponent {
   searchInputText = '';
   addBorderNGClass = false;
 
+  templateReferenceVariable = '';
+
+  templateReferenceVariableFunction(templateReferenceVariable: HTMLInputElement) {
+    alert(templateReferenceVariable.value);
+    console.log(templateReferenceVariable.value);
+  }
 
 
   doExampleFunction() {

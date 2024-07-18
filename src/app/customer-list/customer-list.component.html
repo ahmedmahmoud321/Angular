@@ -1,0 +1,16 @@
+<div style="background-color: #7cbbff">
+  <h1>Customer Component</h1>
+  <ul style="display: flex;justify-content: space-between">
+    <li *ngFor="let customer of customers">
+      <h3>{{ customer.name }}</h3>
+      <p>{{ customer.email }}</p>
+      <p>{{ customer.phone }}</p>
+      <p>{{ customer.address }}</p>
+      <p>{{ customer.city }}</p>
+      <p>{{ customer.state }}</p>
+      <p>{{ customer.zip }}</p>
+      <p>{{ customer.country }}</p>
+      <button (click)="selectedCustomer = customer">Select</button>
+    </li>
+  </ul>
+</div>

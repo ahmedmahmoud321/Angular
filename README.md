@@ -444,3 +444,50 @@ export class ChildComponent {
 <!-- at the child component-->
 <button (click)="onTextChange()">Change Text</button>
 ```
+
+
+### Template Reference Variables
+
+Used to get a reference to an element in the template.
+
+```html
+<!-- at the home.component.html -->
+<input #inputRef type="text"/>
+<button (click)="onButtonClick(inputRef)">Click Me</button>
+```
+
+```ts
+export class HomeComponent {
+  title = 'Home Component';
+  // can be cast to HTMLInputElement
+  // onButtonClick(input: HTMLInputElement) {
+  onButtonClick(input: any) {
+    console.log(input.value);
+  }
+}
+```
+
+#### Template Reference Variables Over Components
+
+```html
+<!-- at the home.component.html -->
+<app-child #childRef></app-child>
+<button (click)="childRef.onTextChange()">Click Me</button>
+```
+
+```ts
+export class HomeComponent {
+  title = 'Home Component';
+}
+```
+
+```ts
+export class ChildComponent {
+  textExample = 'Hello World';
+  onTextChange() {
+    console.log(this.textExample);
+  }
+}
+```
+
+

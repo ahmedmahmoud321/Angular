@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import {FormsModule} from "@angular/forms";
 import { CourseComponent } from './course/course.component';
 import { CourseFilterComponent } from './course-filter/course-filter.component';
+import { CustomerListComponent } from './customer-list/customer-list.component';
 
 @NgModule({
   declarations: [
@@ -17,13 +18,14 @@ import { CourseFilterComponent } from './course-filter/course-filter.component';
     HeaderComponent,
     FooterComponent,
     CourseComponent,
-    CourseFilterComponent
+    CourseFilterComponent,
+    CustomerListComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        FormsModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule
+  ],
   providers: [],
   // bootstrap means the component which will be treated as main component
   bootstrap: [AppComponent]

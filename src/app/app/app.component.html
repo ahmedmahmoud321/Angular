@@ -8,6 +8,11 @@
   <title>Document</title>
 </head>
 <body>
+<style>
+  body{
+    background-color: rgba(220, 226, 255, 0.25);
+  }
+</style>
 
 <app-header></app-header>
 <div class="container">
@@ -67,7 +72,20 @@
     <p>ngClass Directive</p>
   <button (click)="addBorderNGClass = !addBorderNGClass">Toggle Border</button>
   </div>
+
   <app-course></app-course>
+
+<!--   Template Reference Value-->
+
+  <input type="text"  #templateReferenceVariable  (keyup)="0" placeholder="Input Text"/>
+  <p>{{templateReferenceVariable.value}}</p>
+  <button (click)="templateReferenceVariableFunction(templateReferenceVariable)">Search</button>
+
+
+
+<!--   Template Reference Value Over component-->
+  <app-customer-list #customer></app-customer-list>
+  <p>you have selected this customer -> {{customer.selectedCustomer.name}}</p>
 </div>
 
 
