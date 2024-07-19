@@ -10,6 +10,7 @@ import {FormsModule} from "@angular/forms";
 import { CourseComponent } from './course/course.component';
 import { CourseFilterComponent } from './course-filter/course-filter.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
+import { ViewChildComponent } from './view-child/view-child.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
     FooterComponent,
     CourseComponent,
     CourseFilterComponent,
-    CustomerListComponent
+    CustomerListComponent,
+    ViewChildComponent
   ],
   imports: [
     BrowserModule,

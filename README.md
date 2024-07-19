@@ -409,6 +409,7 @@ export class ChildComponent {
 <p>{{text}}</p>
 <p>{{exampleText}}</p>
 ```
+
 2. **Output**
 
    Used to pass data from the child component to the parent component.
@@ -418,6 +419,7 @@ export class HomeComponent {
   title = 'Home Component';
   textExample = 'Hello World';
   textFromChild = '';
+
   onTextChange(event: any) {
     this.textFromChild = event;
   }
@@ -434,6 +436,7 @@ export class HomeComponent {
 export class ChildComponent {
   @Output() textChange = new EventEmitter<string>();
   textExample = 'Hello World';
+
   onTextChange() {
     this.textChange.emit(this.textExample);
   }
@@ -444,7 +447,6 @@ export class ChildComponent {
 <!-- at the child component-->
 <button (click)="onTextChange()">Change Text</button>
 ```
-
 
 ### Template Reference Variables
 
@@ -458,36 +460,91 @@ Used to get a reference to an element in the template.
 
 ```ts
 export class HomeComponent {
-  title = 'Home Component';
-  // can be cast to HTMLInputElement
-  // onButtonClick(input: HTMLInputElement) {
-  onButtonClick(input: any) {
+
+  onButtonClick(input: HTMLInputElement) {
     console.log(input.value);
   }
 }
 ```
 
+> Note: Both **`TRV`** and **`@ViewChild`** can be used to get the data in the child component.,
+
 #### Template Reference Variables Over Components
+
+```ts
+export class ChildComponent {
+  selectedCustomer : Customer =  {id: 1, name: 'Customer 1'}
+}
+```
+
+```html
+<!-- at the app.component.html  or the parent component -->
+<app-customer-list #customer></app-customer-list>
+<p>you have selected this customer -> {{customer.selectedCustomer.name}}</p>
+```
+
+
+
+### @ViewChild
+
+Used to get a reference to a child component in the parent component.
+
+Child Component
+
+```ts
+export class ViewChildComponent {
+  viewChildInput: string = '';
+}
+```
+
+```html
+<input type="text" [(ngModel)]="viewChildInput" placeholder="Input Text"/>
+
+```
 
 ```html
 <!-- at the home.component.html -->
-<app-child #childRef></app-child>
-<button (click)="childRef.onTextChange()">Click Me</button>
+<app-view-child></app-view-child>
+<button (click)="alertViewChildData()">Click me</button>
 ```
 
 ```ts
 export class HomeComponent {
   title = 'Home Component';
-}
-```
+  //  if component we use the component class if html element we use ElementRef
+  @ViewChild(ViewChildComponent) childComponent!: ViewChildComponent;
 
-```ts
-export class ChildComponent {
-  textExample = 'Hello World';
-  onTextChange() {
-    console.log(this.textExample);
+  alertViewChildData() {
+    // get the data from the child component which connected to it's html using 2way data binding
+    alert(this.childComponent.viewChildInput);
   }
 }
 ```
+
+
+### @ViewChild with Template Reference Variables Access Html Elements
+
+> ⚠️ when we used `TRV` alone we need to pass the reference to a function and get the argument like this `onButtonClick(inputRef: HTMLInputElement)`
+>  but when we use `@ViewChild` we can access the html element directly without passing it to a function
+
+```html
+<!-- at the home.component.html -->
+<input #inputRef type="text"/>
+<button (click)="alertViewChildData()">Click Me</button>
+```
+
+```ts
+export class HomeComponent {
+  @ViewChild('inputRef') inputRef!: ElementRef;
+
+  alertViewChildData() {
+    alert(this.inputRef.nativeElement.value);
+  }
+}
+```
+
+
+
+
 
 

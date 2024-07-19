@@ -86,6 +86,15 @@
 <!--   Template Reference Value Over component-->
   <app-customer-list #customer></app-customer-list>
   <p>you have selected this customer -> {{customer.selectedCustomer.name}}</p>
+
+<!--  <p>This data come from a child component to the app component: text ->  {{childComponent.viewChildInput}}</p>-->
+
+
+<!--   View Child Component   -->
+  <app-view-child></app-view-child>
+  <button (click)="alertViewChildData()">Click me</button>
+
+
 </div>
 
 

@@ -1,4 +1,5 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
+import {ViewChildComponent} from "../view-child/view-child.component";
 
 @Component({
   selector: 'app-root',
@@ -22,10 +23,22 @@ export class AppComponent {
 
   templateReferenceVariable = '';
 
+
+  //  will use it to display some data in the ui
+  @ViewChild(ViewChildComponent) childComponent!: ViewChildComponent;
+
+
   templateReferenceVariableFunction(templateReferenceVariable: HTMLInputElement) {
     alert(templateReferenceVariable.value);
     console.log(templateReferenceVariable.value);
   }
+
+  alertViewChildData(){
+    alert(this.childComponent.viewChildInput);
+  }
+
+
+
 
 
   doExampleFunction() {
