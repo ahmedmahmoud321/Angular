@@ -9,7 +9,7 @@
 </head>
 <body>
 <style>
-  body{
+  body {
     background-color: rgba(220, 226, 255, 0.25);
   }
 </style>
@@ -70,29 +70,47 @@
 
   <div [ngClass]="{addBorder: addBorderNGClass}">
     <p>ngClass Directive</p>
-  <button (click)="addBorderNGClass = !addBorderNGClass">Toggle Border</button>
+    <button (click)="addBorderNGClass = !addBorderNGClass">Toggle Border</button>
   </div>
 
   <app-course></app-course>
 
-<!--   Template Reference Value-->
+  <!--   Template Reference Value-->
 
-  <input type="text"  #templateReferenceVariable  (keyup)="0" placeholder="Input Text"/>
-  <p>{{templateReferenceVariable.value}}</p>
+  <input type="text" #templateReferenceVariable (keyup)="0" placeholder="Input Text"/>
+  <p>{{ templateReferenceVariable.value }}</p>
   <button (click)="templateReferenceVariableFunction(templateReferenceVariable)">Search</button>
 
 
-
-<!--   Template Reference Value Over component-->
+  <!--   Template Reference Value Over component-->
   <app-customer-list #customer></app-customer-list>
-  <p>you have selected this customer -> {{customer.selectedCustomer.name}}</p>
+  <p>you have selected this customer -> {{ customer.selectedCustomer.name }}</p>
 
-<!--  <p>This data come from a child component to the app component: text ->  {{childComponent.viewChildInput}}</p>-->
+  <!--  <p>This data come from a child component to the app component: text ->  {{childComponent.viewChildInput}}</p>-->
 
 
-<!--   View Child Component   -->
+  <!--   View Child Component   -->
   <app-view-child></app-view-child>
   <button (click)="alertViewChildData()">Click me</button>
+
+  <!--  ng-content -->
+  <div style="display: flex;margin-top: 200px;justify-content: space-between">
+    <app-ng-content-test>
+      <h2 class="title">Title 1 Example</h2>
+      <p class="description">Description 1 Example</p>
+
+    </app-ng-content-test>
+    <app-ng-content-test>
+      <h2 class="title">Title 1 Example</h2>
+      <p class="description">Description 1 Example</p>
+
+    </app-ng-content-test>
+    <app-ng-content-test>
+      <h2 class="title">Title 1 Example</h2>
+      <p class="description">Description 1 Example</p>
+
+    </app-ng-content-test>
+  </div>
 
 
 </div>

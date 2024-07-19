@@ -522,6 +522,7 @@ export class HomeComponent {
 ### @ViewChild with Template Reference Variables Access Html Elements
 
 > ⚠️ when we used `TRV` alone we need to pass the reference to a function and get the argument like this `onButtonClick(inputRef: HTMLInputElement)`
+
 > but when we use `@ViewChild` we can access the html element directly without passing it to a function
 
 ```html
@@ -559,6 +560,35 @@ Used to control the scope of the styles in the component. Types of encapsulation
 
    Css in the component will be applied to this component only.
    Global Css in `styles.css` will not be applied to the component.
+
+
+
+### ng-content
+
+Used to pass content from the parent component to the child component.
+
+
+```html
+<!-- at the home.component.html -->
+<app-ng-content-test>
+  <h2 class="title">Title 1 Example</h2>
+  <p class="description">Description 1 Example</p>
+</app-ng-content-test>
+<app-ng-content-test>
+  <h2 class="title">Title 1 Example</h2>
+  <p class="description">Description 1 Example</p>
+</app-ng-content-test>
+```
+
+```html
+<!-- at the ng-content-test.component.html -->
+<div>
+  <ng-content select=".title"></ng-content>
+  <ng-content select=".description"></ng-content>
+  <button>Click</button>
+</div>
+
+```
   
   
    

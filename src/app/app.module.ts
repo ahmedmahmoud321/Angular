@@ -11,6 +11,7 @@ import { CourseComponent } from './course/course.component';
 import { CourseFilterComponent } from './course-filter/course-filter.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { ViewChildComponent } from './view-child/view-child.component';
+import { NgContentTestComponent } from './ng-content-test/ng-content-test.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { ViewChildComponent } from './view-child/view-child.component';
     CourseComponent,
     CourseFilterComponent,
     CustomerListComponent,
-    ViewChildComponent
+    ViewChildComponent,
+    NgContentTestComponent
   ],
   imports: [
     BrowserModule,
