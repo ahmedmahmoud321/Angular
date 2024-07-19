@@ -473,7 +473,7 @@ export class HomeComponent {
 
 ```ts
 export class ChildComponent {
-  selectedCustomer : Customer =  {id: 1, name: 'Customer 1'}
+  selectedCustomer: Customer = {id: 1, name: 'Customer 1'}
 }
 ```
 
@@ -482,8 +482,6 @@ export class ChildComponent {
 <app-customer-list #customer></app-customer-list>
 <p>you have selected this customer -> {{customer.selectedCustomer.name}}</p>
 ```
-
-
 
 ### @ViewChild
 
@@ -521,11 +519,10 @@ export class HomeComponent {
 }
 ```
 
-
 ### @ViewChild with Template Reference Variables Access Html Elements
 
 > ⚠️ when we used `TRV` alone we need to pass the reference to a function and get the argument like this `onButtonClick(inputRef: HTMLInputElement)`
->  but when we use `@ViewChild` we can access the html element directly without passing it to a function
+> but when we use `@ViewChild` we can access the html element directly without passing it to a function
 
 ```html
 <!-- at the home.component.html -->
@@ -543,7 +540,28 @@ export class HomeComponent {
 }
 ```
 
+### View Encapsulation
 
+> ⚠️ Note: styles in **`styles.css`** will be applied to all components with `None`,`Emulated` unless it is `shadowDom` it will not apply.
+
+Used to control the scope of the styles in the component. Types of encapsulation: **Emulated**, **None**, **ShadowDom**.
+
+1. **Emulated**
+
+   Css in the component will be applied to this component only.
+
+
+2. **None**
+
+   Whatever css in the parent component will be applied to the child component.
+
+3. **ShadowDom**
+
+   Css in the component will be applied to this component only.
+   Global Css in `styles.css` will not be applied to the component.
+  
+  
+   
 
 
 
