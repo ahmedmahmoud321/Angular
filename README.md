@@ -859,11 +859,18 @@ export class BindingBetterHoverDirective implements OnInit {
 > ```
 >
 > ### 🟢 Pass Multiple Values
->
+> 
 > ```ts
 > // Define a dto to pass multiple values
+> interface HoverColors {
+> bgColor: string;
+> hoverColor: string;
+> } 
+> ```
+>
+> ```ts
 > private colors: HoverColors = { bgColor: '', hoverColor: '' };
-> 
+> // after we get this values we can do whatever we want like use them with @HostBinding & @HostListener
 > @Input('appBindingBetterHover')
 > set appBindingBetterHover(value: HoverColors) {
 > this.colors = value;
