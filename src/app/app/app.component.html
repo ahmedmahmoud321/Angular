@@ -113,7 +113,7 @@
     </app-ng-content-test>
 
 
-<!--     Content Child         -->
+    <!--     Content Child         -->
 
     <app-child>
       <div #projectedContent>
@@ -123,17 +123,21 @@
 
   </div>
 
-<!--  //  Custom Attribute Directive-->
+  <!--  //  Custom Attribute Directive-->
 
   <h3 setBackgroundRed>Custom Attribute Directive</h3>
 
 
-<!--  @Host Listener   -->
+  <!--  @Host Listener   -->
 
   <h3 appHoverDirective>@HostListener</h3>
 
   <h3 appBetterHover> HostBinding </h3>
 
+
+  <!--   Binding Values to the Custom Attribute -->
+  <p type="text" [appBindingBetterHover]="'black'" [bgColor]="'green'">Text Example</p>
+<!---->
 </div>
 
 

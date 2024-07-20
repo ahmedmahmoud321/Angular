@@ -791,5 +791,87 @@ export class BetterHoverDirective {
 }
 ```
 
-
 ### Binding Directive Properties
+
+Get a value from element where directive apply at and act regarding this value
+
+> 🟢 Means get an argument and apply on the directive
+> This done using `@Input` decorator.
+
+```ts   
+  @Directive({
+  selector: '[appBindingBetterHover]'
+})
+export class BindingBetterHoverDirective implements OnInit {
+
+
+  @Input() bgColor: string = ''
+
+  //  Used to override and git a reference to background color of element the directive is applied to
+  @HostBinding('style.backgroundColor') backgroundColor: string = this.bgColor
+
+
+  ngOnInit(): void {
+    //  This will get the value from the html unless it is will not work
+    this.backgroundColor = this.bgColor;
+  }
+
+
+  // This has no relation to current example but it make hover of pink color
+  @HostListener('mouseover') mouseOver() {
+    this.backgroundColor = 'pink';
+  }
+
+  @HostListener('mouseout') mouseOut() {
+    this.backgroundColor = this.bgColor;
+  }
+
+}
+```
+
+```html
+<!-- the attribute or the argument passed to the directive is the `'green'` -->
+<p type="text" appBindingBetterHover [bgColor]="'green'">Text Example</p>
+```
+
+> 🟡 Note: both appBindingBetterHover and bgColor should be in the same element
+
+
+> ### 🟢 You can pass the data in different way like this
+>
+> **Original**
+>
+> ```html
+>   <p type="text" appBindingBetterHover [bgColor]="'green'" [hoverColor]="'black'">Text Example</p>
+> ```
+>
+> **Updated**
+>
+> ```html
+> <!-- Note the directive name is in square bracket and the value is passed to it.  -->
+> <!-- Now you are passing `black` as a hover color  -->
+>   <p type="text" [appBindingBetterHover]="'black'" [bgColor]="'green'">Text Example</p>
+> ```
+>
+> ```ts
+>   @Input() bgColor: string = ''
+>   @Input('appBindingBetterHover') hoverColor: string = ''
+> ```
+>
+> ### 🟢 Pass Multiple Values
+>
+> ```ts
+> // Define a dto to pass multiple values
+> private colors: HoverColors = { bgColor: '', hoverColor: '' };
+> 
+> @Input('appBindingBetterHover')
+> set appBindingBetterHover(value: HoverColors) {
+> this.colors = value;
+> this.backgroundColor = this.colors.bgColor;
+> }
+>
+> ```
+>
+> ```html
+>  <p [appBindingBetterHover]="{ bgColor: 'black', hoverColor: 'red' }">Text Example</p>
+> ```
