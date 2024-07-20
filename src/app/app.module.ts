@@ -13,7 +13,10 @@ import { CustomerListComponent } from './customer-list/customer-list.component';
 import { ViewChildComponent } from './view-child/view-child.component';
 import { NgContentTestComponent } from './ng-content-test/ng-content-test.component';
 import { ChildComponent } from './child/child.component';
-import {SetBackgroundRedDirective} from "./Custom-Directives/setBackgroundRed.directive";
+import {SetBackgroundRedDirective} from "./CustomDirectives/setBackgroundRed.directive";
+import { HoverDirectiveDirective } from './CustomDirectives/hover-directive.directive';
+import { BetterHoverDirective } from './CustomDirectives/better-hover.directive';
+import { BindingBetterHoverDirective } from './CustomDirectives/binding-better-hover.directive';
 
 @NgModule({
   declarations: [
@@ -27,7 +30,10 @@ import {SetBackgroundRedDirective} from "./Custom-Directives/setBackgroundRed.di
     ViewChildComponent,
     NgContentTestComponent,
     ChildComponent,
-    SetBackgroundRedDirective
+    SetBackgroundRedDirective,
+    HoverDirectiveDirective,
+    BetterHoverDirective,
+    BindingBetterHoverDirective
   ],
   imports: [
     BrowserModule,

@@ -684,3 +684,112 @@ this.element.nativeElement.style.color = 'white';
 
 }
 ```
+
+> 🟢 You can generate a directive using the following command:
+> ```shell
+> ng generate directive directive-name
+> ```
+
+
+> 🔴 Previous we used `ElementRef` to get the element but it is not recommended to use it because it is not secure and it is not recommended to use it in the production environment.
+
+> 🟢 Instead of using `ElementRef` we can use `Renderer2` to manipulate the DOM.
+
+### Renderer2
+
+Used to manipulate the DOM in a secure way.
+
+```ts
+@Directive({
+  selector: '[setBackgroundRed]'
+})
+export class SetBackgroundRedDirective implements OnInit {
+  constructor(private element: ElementRef, private renderer: Renderer2) {
+  }
+
+  ngOnInit() {
+    //  Add CSS style
+    this.renderer.setStyle(this.element.nativeElement, 'background-color', 'red');
+    this.renderer.setStyle(this.element.nativeElement, 'color', 'white');
+    // Add CSS class
+    this.renderer.addClass(this.element.nativeElement, 'custom-class');
+    // Set Attribute
+    // Title attribute appear when hover over the element
+    this.renderer.setAttribute(this.element.nativeElement, 'title', 'This is a custom directive');
+  }
+}
+```
+
+```html
+<p setBackgroundRed>Custom Directive</p>
+```
+
+### @HostListener
+
+Used to create a attribute directive with listener like hover
+
+```ts
+@Directive({
+  selector: '[appHoverDirective]'
+})
+export class HoverDirectiveDirective {
+
+  constructor(private element: ElementRef, private render: Renderer2) {
+  }
+
+
+  // inside the () of the @HostListener we specify the action this listener will do when happen
+  @HostListener('mouseenter') onMouseOver() {
+    this.render.setStyle(this.element.nativeElement, 'scale', '1.1')
+    this.render.setStyle(this.element.nativeElement, 'border', '1px solid black')
+    this.render.setStyle(this.element.nativeElement, 'transition', '1s')
+  }
+
+  @HostListener('mouseout') onMouseOut() {
+    this.render.setStyle(this.element.nativeElement, 'scale', '1')
+    this.render.setStyle(this.element.nativeElement, 'border', '0px solid black')
+    this.render.setStyle(this.element.nativeElement, 'transition', '1s')
+  }
+
+}
+```
+
+```html
+  <h3 appHoverDirective>@HostListener</h3>
+```
+
+### @HostBinding
+
+The `@HostBinding`  to have a reference over css attribute then we can use it in different events using @HostListener
+
+```ts
+@Directive({
+  selector: '[appBetterHover]'
+})
+export class BetterHoverDirective {
+
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+
+  }
+
+  // we have reference over the background color 
+  @HostBinding('style.backgroundColor') backgroundColor: string = 'blue'
+  // we have reference over the text color 
+  @HostBinding('style.color') textColor: string = 'black'
+
+  //  using the reference that we have we can apply operations on different (events) that can happen
+  @HostListener('mouseover') mouseOver() {
+    this.backgroundColor = 'green';
+    this.textColor = 'white';
+  }
+
+  @HostListener('mouseout') mouseOut() {
+    this.backgroundColor = 'blue'
+    this.textColor = 'black'
+  }
+
+}
+```
+
+
+### Binding Directive Properties
