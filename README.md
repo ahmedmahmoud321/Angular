@@ -485,9 +485,34 @@ export class ChildComponent {
 
 ### @ViewChild
 
-Used to get a reference to a child component in the parent component.
+1. Used to access the reference item directly without passing it to a function.
 
-Child Component
+2. Used to get a reference to a child component in the parent component.
+
+### @ViewChild Over HTML Element
+
+> ⚠️ when we used `TRV` alone we need to pass the reference to a function and get the argument like this `onButtonClick(inputRef: HTMLInputElement)`
+> But when we use `@ViewChild`, We can access the html element directly without passing it to a function.
+
+```html
+<!-- at the home.component.html -->
+<input #inputRef type="text"/>
+<button (click)="alertViewChildData()">Click Me</button>
+```
+
+```ts
+export class HomeComponent {
+  @ViewChild('inputRef') inputRef!: ElementRef;
+
+  alertViewChildData() {
+    alert(this.inputRef.nativeElement.value);
+  }
+}
+```
+
+### @ViewChild Over Component
+
+**Child Component**
 
 ```ts
 export class ViewChildComponent {
@@ -519,28 +544,6 @@ export class HomeComponent {
 }
 ```
 
-### @ViewChild with Template Reference Variables Access Html Elements
-
-> ⚠️ when we used `TRV` alone we need to pass the reference to a function and get the argument like this `onButtonClick(inputRef: HTMLInputElement)`
-
-> but when we use `@ViewChild` we can access the html element directly without passing it to a function
-
-```html
-<!-- at the home.component.html -->
-<input #inputRef type="text"/>
-<button (click)="alertViewChildData()">Click Me</button>
-```
-
-```ts
-export class HomeComponent {
-  @ViewChild('inputRef') inputRef!: ElementRef;
-
-  alertViewChildData() {
-    alert(this.inputRef.nativeElement.value);
-  }
-}
-```
-
 ### View Encapsulation
 
 > ⚠️ Note: styles in **`styles.css`** will be applied to all components with `None`,`Emulated` unless it is `shadowDom` it will not apply.
@@ -561,12 +564,9 @@ Used to control the scope of the styles in the component. Types of encapsulation
    Css in the component will be applied to this component only.
    Global Css in `styles.css` will not be applied to the component.
 
-
-
-### ng-content
+### ng-content - Content Projection
 
 Used to pass content from the parent component to the child component.
-
 
 ```html
 <!-- at the home.component.html -->
@@ -589,10 +589,98 @@ Used to pass content from the parent component to the child component.
 </div>
 
 ```
-  
-  
-   
+
+### @ContentChild
+
+> ⚠️💀 Used to get a reference in the child component of the item exist in the parent component in send function or projection or between selector of child component
+
+> **Content Projection**: the content that is passed from the parent component to the child component using `ng-content`.
+
+```html
+<!--     App Component.html   -->
+<!--   this #projectionContent we want to pass to the child component but directly from the parent component    -->
+
+<app-child>
+  <div #projectedContent>
+    This is the projected content.
+  </div>
+</app-child>
+```
+
+```html
+<!--  Child Component.html  -->
+<p>
+  Child Component
+</p>
+<div>
+  <ng-content></ng-content>
+</div>
+<button (click)="logContent()">Log Content</button>
+```
+
+```ts
+// Child Component.ts
+@ContentChild('projectedContent')
+content ? : ElementRef;
 
 
+ngAfterContentInit()
+{
+  console.log(this.content);
+}
 
+logContent()
+{
+  console.log(this.content?.nativeElement.textContent);
+}
+```
 
+### Custom Attribute Directive
+
+Used to change the appearance or behavior of an element, component, or another directive.
+
+> Because we want this directive to be used as an attribute in the html tag we need to add a `[]` square bracket before the selector.
+
+```ts
+
+@Directive({
+  // here `[]`
+  selector: '[setBackgroundRed]'
+})
+export class SetBackgroundRedDirective {
+
+  constructor(private element: ElementRef) {
+    element.nativeElement.style.color = 'red';
+    //   element.nativeElement  this return the html element
+  }
+
+}
+```
+
+```html
+<p setBackgroundRed>Custom Directive</p>
+```
+
+> use OnInit to do the logic to make sure the directive has successfully initialized.
+
+To Be Like
+
+```html
+@Directive({
+// here `[]`
+selector: '[setBackgroundRed]'
+})
+export class SetBackgroundRedDirective implements OnInit {
+private element: ElementRef;
+
+constructor(element: ElementRef) {
+this.element = element
+}
+
+ngOnInit() {
+this.element.nativeElement.style.backgroundColor = 'red';
+this.element.nativeElement.style.color = 'white';
+}
+
+}
+```

@@ -1,4 +1,4 @@
-import {Component, ViewChild} from '@angular/core';
+import {AfterContentInit, Component, ContentChild, ElementRef, ViewChild} from '@angular/core';
 import {ViewChildComponent} from "../view-child/view-child.component";
 
 @Component({
@@ -6,7 +6,7 @@ import {ViewChildComponent} from "../view-child/view-child.component";
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements AfterContentInit {
   title = 'my-app';
   imageUrl = 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png';
   displayImage = false;
@@ -27,6 +27,21 @@ export class AppComponent {
   //  will use it to display some data in the ui
   @ViewChild(ViewChildComponent) childComponent!: ViewChildComponent;
 
+  @ContentChild('projectedContent') theContentChild?: ElementRef;
+
+  ngAfterContentInit() {
+    console.log(this.theContentChild?.nativeElement.textContent);
+  }
+
+
+
+
+
+  logContent() {
+    console.log(this.theContentChild?.nativeElement.textContent);
+  }
+
+
 
   templateReferenceVariableFunction(templateReferenceVariable: HTMLInputElement) {
     alert(templateReferenceVariable.value);
@@ -36,6 +51,7 @@ export class AppComponent {
   alertViewChildData(){
     alert(this.childComponent.viewChildInput);
   }
+
 
 
 
@@ -55,5 +71,9 @@ export class AppComponent {
   onMouseOver() {
     console.log('Mouse over');
   }
+
+
+
+
 
 }

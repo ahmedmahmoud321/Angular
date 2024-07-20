@@ -12,6 +12,8 @@ import { CourseFilterComponent } from './course-filter/course-filter.component';
 import { CustomerListComponent } from './customer-list/customer-list.component';
 import { ViewChildComponent } from './view-child/view-child.component';
 import { NgContentTestComponent } from './ng-content-test/ng-content-test.component';
+import { ChildComponent } from './child/child.component';
+import {SetBackgroundRedDirective} from "./Custom-Directives/setBackgroundRed.directive";
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { NgContentTestComponent } from './ng-content-test/ng-content-test.compon
     CourseFilterComponent,
     CustomerListComponent,
     ViewChildComponent,
-    NgContentTestComponent
+    NgContentTestComponent,
+    ChildComponent,
+    SetBackgroundRedDirective
   ],
   imports: [
     BrowserModule,
