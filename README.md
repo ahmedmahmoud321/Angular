@@ -859,7 +859,7 @@ export class BindingBetterHoverDirective implements OnInit {
 > ```
 >
 > ### 🟢 Pass Multiple Values
-> 
+>
 > ```ts
 > // Define a dto to pass multiple values
 > interface HoverColors {
@@ -882,3 +882,52 @@ export class BindingBetterHoverDirective implements OnInit {
 > ```html
 >  <p [appBindingBetterHover]="{ bgColor: 'black', hoverColor: 'red' }">Text Example</p>
 > ```
+
+### Services
+
+Used to share data between components.
+Used to write a business logic.
+Used To Communicate between components.
+What if we wanted two component's don't have a parent-child relationship to communicate with each other?
+We can't use @Input and @Output decorators in this case.
+
+1. **Create a Service**
+
+    ```shell
+    ng generate service javascript
+    ```
+
+    ```ts
+    export class EnrollmentService {
+      OnEnrollClicked(title: string) {
+        alert("Thank you for enrolling to" + title + " course.")
+      }
+    }
+    ```
+
+2. **Inject Service In Component**
+    ```ts
+    @Component({
+      selector: 'app-anuglar',
+      templateUrl: './angular.component.html',
+      styleUrls: ['./angular.component.css'],
+      providers: [EnrollmentService]
+        
+    })
+    export class AngularComponent {
+      constructor(private enrollService: EnrollmentService) {}
+      OnEnroll() {this.enrollService.OnEnrollClicked("Angular")}
+    }
+    ```
+   > Note:  we use ` providers: [EnrollmentService]` to make this service injectable to angular take instance from it.
+
+### Hierarchical Injection
+
+Angular will provide an instance for the component and all it's child component.
+
+
+At the app component we will provide the `providers` of the service 
+this will make it injectable to all it's child components which used on it <example-component></ex etc...
+```ts
+
+```

@@ -17,6 +17,8 @@ import {SetBackgroundRedDirective} from "./CustomDirectives/setBackgroundRed.dir
 import { HoverDirectiveDirective } from './CustomDirectives/hover-directive.directive';
 import { BetterHoverDirective } from './CustomDirectives/better-hover.directive';
 import { BindingBetterHoverDirective } from './CustomDirectives/binding-better-hover.directive';
+import { AngularComponent } from './anuglar/angular.component';
+import { JavascriptComponent } from './javascript/javascript.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { BindingBetterHoverDirective } from './CustomDirectives/binding-better-h
     SetBackgroundRedDirective,
     HoverDirectiveDirective,
     BetterHoverDirective,
-    BindingBetterHoverDirective
+    BindingBetterHoverDirective,
+    AngularComponent,
+    JavascriptComponent
   ],
   imports: [
     BrowserModule,
