@@ -5,7 +5,6 @@ import {EnrollmentService} from "../services/enrollment.service";
   selector: 'app-anuglar',
   templateUrl: './angular.component.html',
   styleUrls: ['./angular.component.css'],
-  providers: [EnrollmentService]
 })
 export class AngularComponent {
 

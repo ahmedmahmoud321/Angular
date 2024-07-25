@@ -895,6 +895,7 @@ We can't use @Input and @Output decorators in this case.
 
     ```shell
     ng generate service javascript
+    ng g s javascript
     ```
 
     ```ts
@@ -925,9 +926,107 @@ We can't use @Input and @Output decorators in this case.
 
 Angular will provide an instance for the component and all it's child component.
 
-
-At the app component we will provide the `providers` of the service 
+At the app component we will provide the `providers` of the service
 this will make it injectable to all it's child components which used on it <example-component></ex etc...
-```ts
 
+```ts
+@Component({
+  selector: 'app-root',
+  templateUrl: './app.component.html',
+  styleUrls: ['./app.component.css'],
+  providers: [EnrollmentService]
+
+})
+export class AppComponent {
+}
 ```
+
+> Note: the highest injection scope is the `AppModule` the instance will be available throw the **`application`** for all the **components**, **directives**, **services**, **etc...**
+
+```ts
+ @NgModule({
+  declarations: [
+    AppComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    FormsModule
+  ],
+  providers: [EnrollmentService],
+  bootstrap: [AppComponent]
+})
+export class AppModule {
+}
+ ```
+
+### Inject Service In Another Service
+
+@When we want to use a service inside another service we need to use `@Injectable` decorator
+
+@e use @Injectable at the service that we want to inject another service in it
+
+The `reciving service` should have the `@Injectable` decorator
+
+```ts
+@Injectable()
+// This is the reciving service of the instance
+export class EnrollmentService {
+  constructor(private logService: LogService) {
+  }
+}
+```
+
+```ts
+export class LogService {
+  log(message: string) {
+    console.log(message);
+  }
+}
+```
+
+> 🟢 **Note:**  You can can always use @Injectable at all services to make sure that it is injectable to other services
+
+### Data Share - Event Emitter
+
+1. Service
+    ```ts
+    @Injectable({
+      providedIn: 'root'
+    })
+    export class BridgeService {
+    
+      constructor() {
+      }
+    
+      users: User[] = [the list]
+      userEvent = new EventEmitter<User>();
+    
+      sendUser(user: User) {
+        this.userEvent.emit(user);
+      }
+    }
+    
+    ```
+
+2. Sender
+      ```ts
+      export class SenderComponent {
+        
+        users = this.bridgeService.users;
+        constructor(private bridgeService: BridgeService) {}
+        sendUser(user: User) {this.bridgeService.sendUser(user);}
+        
+      }
+      ```
+3. Receiver
+    ```ts
+    export class ReceiverComponent {
+      user: User = new User();
+      constructor(private bridgeService: BridgeService) {
+        this.bridgeService.userEvent.subscribe((user: User) => {
+          this.user = user;
+        });
+      }
+    }
+    ```
