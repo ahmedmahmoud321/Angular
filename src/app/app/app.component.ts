@@ -1,5 +1,6 @@
-import {AfterContentInit, Component, ContentChild, ElementRef, ViewChild} from '@angular/core';
+import {AfterContentInit, Component, ContentChild, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ViewChildComponent} from "../view-child/view-child.component";
+import {Observable} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -7,7 +8,8 @@ import {ViewChildComponent} from "../view-child/view-child.component";
   styleUrls: ['./app.component.css'],
 
 })
-export class AppComponent implements AfterContentInit {
+export class AppComponent implements AfterContentInit, OnInit {
+
   title = 'my-app';
   imageUrl = 'https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png';
   displayImage = false;
@@ -35,7 +37,31 @@ export class AppComponent implements AfterContentInit {
   }
 
 
+  // Observable
+  myObservable = new Observable((observer) => {
+    observer.next('Hello World');
+    // observer.error(new Error('Error'));
+    observer.next('Hello Angular');
+    observer.complete();
+  });
 
+
+
+  ngOnInit(): void {
+    this.myObservable.subscribe(
+      {
+        next: (data) => {
+          console.log(data);
+        },
+        error: (err) => {
+          alert(err);
+        },
+        complete: () => {
+          console.log('For Example Disappear Loader');
+        }
+      }
+    )
+  };
 
 
   logContent() {
@@ -43,19 +69,17 @@ export class AppComponent implements AfterContentInit {
   }
 
 
-
-  templateReferenceVariableFunction(templateReferenceVariable: HTMLInputElement) {
+  templateReferenceVariableFunction(templateReferenceVariable
+                                      :
+                                      HTMLInputElement
+  ) {
     alert(templateReferenceVariable.value);
     console.log(templateReferenceVariable.value);
   }
 
-  alertViewChildData(){
+  alertViewChildData() {
     alert(this.childComponent.viewChildInput);
   }
-
-
-
-
 
 
   doExampleFunction() {
@@ -63,7 +87,10 @@ export class AppComponent implements AfterContentInit {
     return 'Example function';
   }
 
-  onWrite(event: any) {
+  onWrite(event
+            :
+            any
+  ) {
     console.log(event.target.value)
     this.theText = event.target.value;
   }
@@ -72,9 +99,6 @@ export class AppComponent implements AfterContentInit {
   onMouseOver() {
     console.log('Mouse over');
   }
-
-
-
 
 
 }

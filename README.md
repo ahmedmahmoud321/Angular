@@ -1030,3 +1030,56 @@ export class LogService {
       }
     }
     ```
+
+### Observable
+
+used to share data between components.
+
+```ts
+   myObservable = new Observable((observer) => {
+  observer.next('Hello World');
+  observer.error(new Error('Error'));
+  observer.next('Hello Angular');
+  observer.complete();
+});
+```
+
+```ts
+  this.myObservable.subscribe(
+    {
+      next: (data) => {
+        console.log(data);
+      },
+      error: (err) => {
+        alert(err);
+      },
+      complete: () => {
+        console.log('For Example Disappear Loader');
+      }
+    }
+  )
+
+```
+
+> 🟡 **Note:**  once .complete() or .error() is called the observable will stop emitting data.
+
+
+#### of & from 
+```ts
+  // this will emit the data one by one even it was a list will emit the whole list once
+of('Hello World', 1, 2, 3, 4, 5).subscribe(
+  {
+    next: (data) => {
+      console.log(data);
+    }
+)
+// this will emit the data one 
+from([1, 2, 3, 4, 5]).subscribe(
+  {
+    next: (data) => {
+      console.log(data);
+    }
+  }
+)
+```
+### Subject
