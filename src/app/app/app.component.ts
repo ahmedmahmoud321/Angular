@@ -1,6 +1,6 @@
 import {AfterContentInit, Component, ContentChild, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ViewChildComponent} from "../view-child/view-child.component";
-import {Observable} from "rxjs";
+import {catchError, map, Observable, of} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -60,6 +60,22 @@ export class AppComponent implements AfterContentInit, OnInit {
           console.log('For Example Disappear Loader');
         }
       }
+    )
+
+    of('Hello World',2).pipe(
+
+      map(data => { throw new Error('Error ' + data) })
+
+    ).pipe(
+
+      catchError(err => of('Error Handled' + err))
+
+    ).subscribe(
+
+      {
+        next: (data) => {console.log(data);}
+      }
+
     )
   };
 

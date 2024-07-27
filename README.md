@@ -1046,40 +1046,235 @@ used to share data between components.
 
 ```ts
   this.myObservable.subscribe(
-    {
-      next: (data) => {
-        console.log(data);
-      },
-      error: (err) => {
-        alert(err);
-      },
-      complete: () => {
-        console.log('For Example Disappear Loader');
-      }
+  {
+    next: (data) => {
+      console.log(data);
+    },
+    error: (err) => {
+      alert(err);
+    },
+    complete: () => {
+      console.log('For Example Disappear Loader');
     }
-  )
+  }
+)
 
 ```
 
 > 🟡 **Note:**  once .complete() or .error() is called the observable will stop emitting data.
 
+#### Operators
 
-#### of & from 
+1. Creating Operators
+    ```ts
+      // this will emit the data one by one even it was a list will emit the whole list once
+    of('Hello World', 1, 2, 3, 4, 5).subscribe(
+      {
+        next: (data) => {
+          console.log(data);
+        }
+    )
+    // this will emit the data one 
+    from([1, 2, 3, 4, 5]).subscribe(
+      {
+        next: (data) => {
+          console.log(data);
+        }
+      }
+    )
+    ```
+
+2. Transforming Operators
+
+    ```ts
+      // map operator
+    of(1, 2, 3, 4, 5).pipe(
+      map(data => data * 2)
+    ).subscribe(
+      {
+        next: (data) => {
+          console.log(data);
+        }
+      }
+    )
+    ```
+
+3. Filtering Operators
+
+    ```ts
+      // filter operator
+    of(1, 2, 3, 4, 5).pipe(
+      filter(data => data > 2)
+    ).subscribe(
+      {
+        next: (data) => {
+          console.log(data);
+        }
+      }
+    )
+    ```
+
+4. Combining Operators
+
+    ```ts
+      // combineLatest operator
+    const observable1 = of('Hello');
+    const observable2 = of('World');
+    combineLatest(observable1, observable2).subscribe(
+      {
+        next: (data) => {
+          console.log(data);
+        }
+      }
+    )
+    ```
+5. Error Handling Operators
+
+    ```ts
+      // catchError operator
+    of('Hello World').pipe(
+      map(data => { throw new Error('Error') })
+    ).pipe(
+      catchError(err => of('Error Handled'))
+    ).subscribe(
+      {
+        next: (data) => {
+          console.log(data);
+        }
+      }
+    )
+    ```
+
+#### Subject
+
+used to share data between components exactly like EventEmitter
+
+**Service**
+
 ```ts
-  // this will emit the data one by one even it was a list will emit the whole list once
-of('Hello World', 1, 2, 3, 4, 5).subscribe(
-  {
-    next: (data) => {
-      console.log(data);
-    }
-)
-// this will emit the data one 
-from([1, 2, 3, 4, 5]).subscribe(
-  {
-    next: (data) => {
-      console.log(data);
-    }
+@Injectable({
+  providedIn: 'root'
+})
+export class BridgeService {
+  userEvent = new Subject<User>();
+
+  sendUser(user: User) {
+    this.userEvent.next(user);
   }
-)
+}
 ```
-### Subject
+
+**First Component**
+
+```ts
+export class FirstComponent {
+  constructor(private bridgeService: BridgeService) {
+  }
+
+  sendUser(user: User) {
+    this.bridgeService.sendUser(user);
+  }
+}
+```
+
+**Second Component**
+
+```ts
+export class SecondComponent {
+
+  constructor(private bridgeService: BridgeService) {
+    this.bridgeService.userEvent.subscribe((user: User) => {
+      console.log(this.user);
+    });
+  }
+}
+```
+
+### Unsubscribe
+
+Used to prevent memory leaks.
+
+```ts
+export class BridgeService {
+  userEvent = new Subject<User>();
+  private subscription: Subscription = new Subscription();
+
+  sendUser(user: User) {
+    this.userEvent.next(user);
+  }
+
+  subscribeUser(callback: (user: User) => void) {
+    this.subscription.add(this.userEvent.subscribe(callback));
+  }
+
+  unsubscribeUser() {
+    this.subscription.unsubscribe();
+  }
+}
+```
+
+```ts
+//  also can be used to stop loading of an item 
+export class SecondComponent {
+  constructor(private bridgeService: BridgeService) {
+    this.bridgeService.subscribeUser((user: User) => {
+      console.log(user);
+    });
+  }
+
+  ngOnDestroy() {
+    this.bridgeService.unsubscribeUser();
+  }
+}
+```
+
+### Routing
+
+Routes are used to navigate between different views or components within an application
+
+#### 1. setting routes
+
+```ts
+// 1. Import the necessary modules
+const routes: Routes = [
+  {path: '', component: HomeComponent},
+  {path: 'about', component: AboutComponent},
+];
+
+// mandatory to add RouterModule.forRoot(routes) to the imports array
+@NgModule({
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
+})
+export class AppRoutingModule {
+}
+```
+
+> 🟢 **Note:**  we can redirect to a specific route using `redirectTo` and `pathMatch` properties
+
+```ts
+  const routes: Routes = [
+  {path: '', redirectTo: "home", pathMatch: "full"},
+  {path: 'home', component: HomeComponent},
+  {path: 'about', component: AboutComponent},
+]
+```
+
+#### 2. Router Outlet
+
+Directive tells angular where to load the component.
+
+    ```html
+    <router-outlet></router-outlet>
+    ```
+
+#### 3. RouterLink
+
+Link to the route page without using `href="#"`.
+
+    ```html
+    <a routerLink="/">Home</a>
+    <a routerLink="/about">About</a>
+    ```
+
+

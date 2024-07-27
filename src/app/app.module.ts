@@ -21,6 +21,14 @@ import {AngularComponent} from './anuglar/angular.component';
 import {JavascriptComponent} from './javascript/javascript.component';
 import {SenderComponent} from './sender/sender.component';
 import {ReceiverComponent} from './receiver/receiver.component';
+import {SolutionsComponent} from './solutions/solutions.component';
+import {RouterModule, Routes} from "@angular/router";
+
+
+const routes: Routes = [
+  {path: '', component: HomeComponent},
+  {path: 'solutions', component: SolutionsComponent},
+];
 
 @NgModule({
   declarations: [
@@ -41,13 +49,16 @@ import {ReceiverComponent} from './receiver/receiver.component';
     AngularComponent,
     JavascriptComponent,
     SenderComponent,
-    ReceiverComponent
+    ReceiverComponent,
+    SolutionsComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    RouterModule.forRoot(routes)
   ],
+  exports: [RouterModule],
   // bootstrap means the component which will be treated as main component
   bootstrap: [AppComponent]
 })
