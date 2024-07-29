@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -6,7 +7,7 @@ import {Component} from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
-  siteURL = window.location.href;
+
   title = 'GodaDev';
   logo = 'assets/images/logo.png';
   menu = [
@@ -29,7 +30,12 @@ export class HeaderComponent {
   ];
 
 
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {
+  }
 
+  navigateToSolutions() {
+    // this.router.navigate(['solutions'],{relativeTo: this.activatedRoute});
+    this.router.navigateByUrl('solutions');
 
-  protected readonly name = name;
+  }
 }

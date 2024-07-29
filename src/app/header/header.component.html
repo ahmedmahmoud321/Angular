@@ -3,19 +3,19 @@
     <div class="container">
       <div class="left">
         <ul class="main-links">
-          <li><a href="/company">Company</a></li>
-          <li><a href="/projects">Projects</a></li>
-          <li class="mobile-hide"><a href="{{siteURL}}/technologies">Technologies</a></li>
-          <li class="mobile-hide"><a href="{{siteURL}}/about">About</a></li>
-          <li class="desktop-hide"><a href="{{siteURL}}/contact">Contact</a></li>
-          <li class="desktop-hide"><a href="{{siteURL}}/careers">Careers</a></li>
+          <li><a routerLink="/company">Company</a></li>
+          <li><a routerLink="/projects">Projects</a></li>
+          <li class="mobile-hide"><a routerLink="/technologies">Technologies</a></li>
+          <li class="mobile-hide"><a routerLink="/about">About</a></li>
+          <li class="desktop-hide"><a routerLink="/contact">Contact</a></li>
+          <li class="desktop-hide"><a routerLink="/careers">Careers</a></li>
         </ul>
       </div>
       <div class="right mobile-hide">
         <ul class="main-links">
-          <li><a href="/contact/">Contact</a></li>
-          <li><a href="/careers/">Careers</a></li>
-          <li><a href="/support/">Support</a></li>
+          <li><a routerLink="/contact/">Contact</a></li>
+          <li><a routerLink="/careers/">Careers</a></li>
+          <li><a routerLink="/support/">Support</a></li>
         </ul>
       </div>
 
@@ -24,21 +24,23 @@
   <div class="header-bottom">
     <div class="container">
       <div class="logo">
-        <a href="/">
+        <a routerLink="/">
         </a>
       </div>
 
       <div class="menu-items">
         <div class="menu-left">
 
-          <a href="/">Home</a>
-          <a href="/solutions" class="dropbtn">Solutions</a>
-          <a class="menu-title" href="/features/">Features</a>
-          <a class="desktop-hide" href="/support">Support</a>
-          <a class="desktop-hide" href="/technologies">Technologies </a>
-          <a class="desktop-hide" href="/about/">About</a>
-          <a href="/blogs">Blog</a>
-          <a class="menu-title" href="/insights">Insights
+          <a routerLink="/" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">Home</a>
+          <a routerLink="/solutions" routerLinkActive="active" class="dropbtn">Solutions</a>
+          <a style="text-decoration: underline;color:blue;" (click)="navigateToSolutions()">Solutions
+            Programmatically</a>
+          <a class="menu-title" routerLink="/features/">Features</a>
+          <a class="desktop-hide" routerLink="/support">Support</a>
+          <a class="desktop-hide" routerLink="/technologies">Technologies </a>
+          <a class="desktop-hide" routerLink="/about/">About</a>
+          <a routerLink="/blogs" routerLinkActive="active">Blog</a>
+          <a class="menu-title" routerLink="/insights">Insights
             <div class="fly-item"><span>News</span></div>
           </a>
 
@@ -62,7 +64,7 @@
             software solutions, optimizing processes, enhancing efficiency, and driving innovation across
             your organization.</p>
           <img style="height:20px;display:block;margin:10px 0;background-color:white;border-radius: 10px; padding:10px;"
-             ></div>
+          ></div>
         <div class="header-popup-tab"
              style="background-color:white;border-radius:16px;height:200px;width:70%;;box-shadow:0 0 18px rgba(36, 106, 255, .08);display:flex;align-items: center;">
           <div style="display: flex;;flex-direction: column;width: 49%;height: 100%;"></div>

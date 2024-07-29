@@ -214,3 +214,11 @@ body.open .header-bottom .container .menu-items {
   transition: 0.2s;
 
 }
+.active{
+  color: black;
+  background-color: #7cbbff;
+  padding: 20px;
+  border-radius: 10px;
+  text-underline-mode: none;
+  text-decoration: none;
+}

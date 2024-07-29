@@ -1264,17 +1264,156 @@ export class AppRoutingModule {
 
 Directive tells angular where to load the component.
 
-    ```html
-    <router-outlet></router-outlet>
-    ```
+```html
 
-#### 3. RouterLink
+<router-outlet></router-outlet>
+```
+
+#### 3. Not Found Page
+
+```ts
+    const routes: Routes = [
+  //     should be last route
+  {path: '**', component: NotFoundComponent}
+}]
+;
+```
+
+#### 4. RouterLink
 
 Link to the route page without using `href="#"`.
 
-    ```html
-    <a routerLink="/">Home</a>
-    <a routerLink="/about">About</a>
-    ```
+From String
+
+```html
+<a routerLink="/">Home</a>
+<a routerLink="/about">About</a>
+```
+
+From Property
+
+```html
+<a [routerLink]="['attribute']">Home</a>
+```
+
+#### 5. RouterLinkActive
+
+used to add a css class to the active route.
+which route is currently active.
+
+```html
+<a routerLink="/home" routerLinkActive="active">Home</a>
+<a routerLink="/about" routerLinkActive="'active','class2'">About</a>
+```
+
+> 🟡 **Note:** when child route is active the parent route will be active too.
+
+**To Avoid This**
+
+  ```html
+  <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Home</a>
+  ```
+
+#### 6. Absolute and Relative Path
+
+**Absolute Path**
+
+use `/` at the beginning of the path lead to map to the root of the application.
+
+```html
+<a routerLink="/home">Home</a>
+```
+
+**Relative Path**
+
+don't use `/` at the beginning of the path lead to map to the current route.
+can use `./` as relative route.
+
+```html
+if we was on `localhost:4200/home` and we want to go to `localhost:4200/home/about` we can use the relative path like this
+```html
+<!-- this on the `localhost:4200/home` -->
+<a routerLink="about">about</a>
+```
+
+### Programmatic Navigation
+
+```html
+  <a (click)="navigateToSolutions()"> Solutions
+  Programmatically < /a>
+```
+
+```ts
+  constructor(private
+router: Router
+)
+{
+}
+
+navigateToSolutions()
+{
+  this.router.navigate(['solutions']);
+  // OR
+  this.router.navigateByUrl('solutions');
+}
+
+```
+
+> Note:  `navigate` or `navigateByUrl()` always use the absolute path
+
+**To use the relative route**
+access currently active route
+
+```ts
+  constructor(private
+router: Router, private
+activatedRoute: ActivatedRoute
+)
+{
+}
+
+navigateToSolutions()
+{
+  this.router.navigate(['solutions'], {relativeTo: this.activatedRoute});
+
+}
+
+```
+
+```ts
+
+```
+
+#### passing a parameter
 
 
+```ts
+const routes: Routes = [
+  {path: 'solutions', component: SolutionsComponent},
+  {path: 'solutions/:id', component: SolutionsComponent},
+];
+
+```
+
+
+```ts
+  constructor(private activatedRoute: ActivatedRoute) {
+}
+
+solutionId: any;
+
+
+ngOnInit(): void {
+  this.solutionId = this.activatedRoute.snapshot.paramMap.get('id')
+  // OR
+  this.solutionId = this.activatedRoute.snapshot.params['id'];
+  
+}
+
+```
+
+
+```html
+<p>{{ solutionId }}</p>
+
+```
