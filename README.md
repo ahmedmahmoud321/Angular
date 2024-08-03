@@ -1523,5 +1523,33 @@ activatedRoute.queryParams.subscribe((param) => {
 })
   ```
 
+### Fragment
+
+used to navigate to a specific section of the page.
+
+```html
+<a [routerLink]="['/solutions']" fragment="section1">Solutions</a>
+<a [routerLink]="['/solutions']" fragment="section2">Solutions</a>
+
+<p id="section1">Section 1</p>
+<p id="section2">Section 2</p>
+<p id="section3">Section 3</p>
+```
+
+```ts
+
+ngOnInit()
+{
+  this.activatedRoute.fragment.subscribe((fragment) => {
+    jumpToSection(fragment);
+  })
+}
+
+jumpToSection(section: string)
+{
+  document.getElementById(section).scrollIntoView({behavior: 'smooth'});
+  
+}
+```
 
 
