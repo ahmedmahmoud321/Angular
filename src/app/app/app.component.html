@@ -139,22 +139,27 @@
   <p type="text" [appBindingBetterHover]="{ bgColor: 'blue', hoverColor: 'red' }">Text Example</p>
   <!--       -->
 
-<!--  &lt;!&ndash;   Service    &ndash;&gt;-->
+  <!--  &lt;!&ndash;   Service    &ndash;&gt;-->
 
-<!--  <app-anuglar></app-anuglar>-->
-<!--  <app-javascript></app-javascript>-->
+  <!--  <app-anuglar></app-anuglar>-->
+  <!--  <app-javascript></app-javascript>-->
 
-<!--   Dependency Injection -->
+  <!--   Dependency Injection -->
 
   <div style="margin-top: 100px"></div>
   <app-sender></app-sender>
   <app-receiver></app-receiver>
 
 
-<!--   Routes  -->
-<div style="background-color: blue;height: 200px;">
-  <router-outlet></router-outlet>
-</div>
+  <!--   Routes  -->
+  <div style="background-color: blue;height: 200px;">
+    <router-outlet></router-outlet>
+  </div>
+
+
+  <!--   Query Parameters  -->
+  <a [routerLink]="['/solutions']" [queryParams]="{location: 'France'}">Query Parameters</a>
+  <Button (click)="navigateToQueryParams()">Sent Query Param</Button>
 
 </div>
 

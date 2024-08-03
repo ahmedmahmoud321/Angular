@@ -1,6 +1,7 @@
 import {AfterContentInit, Component, ContentChild, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {ViewChildComponent} from "../view-child/view-child.component";
 import {catchError, map, Observable, of} from "rxjs";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -23,6 +24,7 @@ export class AppComponent implements AfterContentInit, OnInit {
   ]
   searchInputText = '';
   addBorderNGClass = false;
+
 
   templateReferenceVariable = '';
 
@@ -117,4 +119,11 @@ export class AppComponent implements AfterContentInit, OnInit {
   }
 
 
+  constructor(private router: Router) {
+  }
+
+  navigateToQueryParams() {
+    this.router.navigate(['/solutions'], {queryParams: {location: 'Egypt'}});
+
+  }
 }

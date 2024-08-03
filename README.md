@@ -1386,7 +1386,6 @@ navigateToSolutions()
 
 #### passing a parameter
 
-
 ```ts
 const routes: Routes = [
   {path: 'solutions', component: SolutionsComponent},
@@ -1395,25 +1394,134 @@ const routes: Routes = [
 
 ```
 
-
 ```ts
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(private
+activatedRoute: ActivatedRoute
+)
+{
 }
 
 solutionId: any;
 
 
-ngOnInit(): void {
+ngOnInit()
+:
+void {
   this.solutionId = this.activatedRoute.snapshot.paramMap.get('id')
   // OR
   this.solutionId = this.activatedRoute.snapshot.params['id'];
-  
+
 }
 
 ```
-
 
 ```html
 <p>{{ solutionId }}</p>
 
 ```
+
+### Using Observables
+
+> Note: we get the value the params in the init of the component so after component init we can't retrieve any params
+
+  ```ts
+constructor(private
+activatedRoute: ActivatedRoute
+)
+{
+}
+
+
+solutionId: any;
+paramsObservable: any;
+
+
+ngOnInit()
+:
+void {
+  // this.solutionId = this.activatedRoute.snapshot.paramMap.get('id')
+  // this.solutionId = this.activatedRoute.snapshot.params['id'];
+  this.paramsObservable = this.activatedRoute.paramMap.subscribe((param) => {
+    this.solutionId = param.get('id');
+
+  })
+}
+
+ngOnDestroy()
+:
+void {
+  this.paramsObservable.unsubscribe();
+}
+  ```
+
+### Passing Query Params `?location=egypt`.
+
+query params are used to pass data to the route.
+
+data passed as key-value pairs.
+
+#### Passing Query Via `[routerLink]` Property
+
+```html
+<a [routerLink]="['/solutions']" [queryParams]="{page: 1}">Solutions</a>
+```
+
+then the url will be like `localhost:4200/solutions?page=1`
+
+#### Passing Query Via `navigate` Method
+
+```html
+<a (click)="addQueryParams()">Solutions Programmatically</a>
+```
+
+```ts
+
+
+construct(private
+router: Router
+)
+{
+}
+
+addQueryParams()
+{
+  this.router.navigate(['/solutions'], {queryParams: {page: 1}});
+}
+
+
+```
+
+#### Getting Query Params
+
+#### Snapshot **Never Use**
+```ts
+constructor(private
+activatedRoute: ActivatedRoute
+)
+{
+}
+editMode = false;
+
+ngOnInit()
+{
+  this.editMode = Boolean(this.activatedRoute.snapshot.queryParamMap.get('page'))
+}
+```
+
+
+
+
+
+ ```ts
+      constructor(private
+activatedRoute: ActivatedRoute
+)
+{
+}
+activatedRoute.queryParams.subscribe((param) => {
+  console.log(param);
+})
+  ```
+
+
+
