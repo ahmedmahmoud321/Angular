@@ -156,11 +156,13 @@
     <router-outlet></router-outlet>
   </div>
 
+  <!-- used to demonstrate how to pass argument or variable to route -->
+  <!--  &lt;!&ndash;   Query Parameters  &ndash;&gt;-->
+  <!--  <a [routerLink]="['/solutions']" [queryParams]="{location: 'France'}">Query Parameters</a>-->
+  <!--  <Button (click)="navigateToQueryParams()">Sent Query Param</Button>-->
 
-  <!--   Query Parameters  -->
-  <a [routerLink]="['/solutions']" [queryParams]="{location: 'France'}">Query Parameters</a>
-  <Button (click)="navigateToQueryParams()">Sent Query Param</Button>
 
+  <app-solutions></app-solutions>
 </div>
 
 

@@ -23,15 +23,17 @@ import {SenderComponent} from './sender/sender.component';
 import {ReceiverComponent} from './receiver/receiver.component';
 import {SolutionsComponent} from './solutions/solutions.component';
 import {RouterModule, Routes} from "@angular/router";
-import { NotFoundComponent } from './not-found/not-found.component';
+import {NotFoundComponent} from './not-found/not-found.component';
+import {SolutionComponent} from './solution/solution.component';
 
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
-  {path: 'solutions', component: SolutionsComponent},
-  {path: 'solutions/:id', component: SolutionsComponent},
+  {path: 'solution', component: SolutionComponent},
+  {path: 'solution/:id', component: SolutionComponent},
   {path: '**', component: NotFoundComponent},
 ];
+
 
 @NgModule({
   declarations: [
@@ -54,7 +56,8 @@ const routes: Routes = [
     SenderComponent,
     ReceiverComponent,
     SolutionsComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SolutionComponent
   ],
   imports: [
     BrowserModule,

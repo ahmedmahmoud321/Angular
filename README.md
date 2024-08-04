@@ -1553,3 +1553,17 @@ jumpToSection(section: string)
 ```
 
 
+### Child Routes
+used to navigate to a child route.
+child routes are used to navigate to a child page of the parent page.
+
+```ts
+const routes: Routes = [
+{ path: 'home', component: HomeComponent },
+{ path: 'about', component: AboutComponent },
+{ path: 'solutions', component: SolutionsComponent, children: [
+{ path: 'solution/:id', component: Solution1Component }]
+}];
+```
+
+

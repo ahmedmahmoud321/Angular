@@ -1,5 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
+import {SolutionsService} from "../solutions.service";
+import {Solution} from "../models/Solution";
+
 
 @Component({
   selector: 'app-solutions',
@@ -8,8 +11,12 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class SolutionsComponent implements OnInit, OnDestroy {
 
-  constructor(private activatedRoute: ActivatedRoute) {
+  constructor(private activatedRoute: ActivatedRoute, private router: Router, protected solutionsService: SolutionsService) {
+
   }
+
+  solutions: Solution[] = [];
+
 
 
   solutionId: any;
@@ -29,6 +36,8 @@ export class SolutionsComponent implements OnInit, OnDestroy {
         this.passedQueryParam = queryParam['location'];
       }
     )
+
+
   }
 
   ngOnDestroy(): void {
@@ -36,4 +45,9 @@ export class SolutionsComponent implements OnInit, OnDestroy {
   }
 
 
+  onSelectSolution(id: number) {
+    this.router.navigate(['/solution', id])
+
+
+  }
 }

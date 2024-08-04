@@ -1,3 +1,10 @@
 <p> This is solutions component</p>
 <p>{{ solutionId }}</p>
-<p>Passed Query Param: {{passedQueryParam}}</p>
+<p>Passed Query Param: {{ passedQueryParam }}</p>
+
+
+<div style="border: 1px solid black" *ngFor="let solution of solutionsService.getSolutions()">
+  <p>{{ solution.id }} - {{ solution.name }}</p>
+  <p>{{ solution.description }}</p>
+  <button (click)="onSelectSolution(solution.id)">Select</button>
+</div>
