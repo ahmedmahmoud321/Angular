@@ -30,8 +30,8 @@ import {SolutionComponent} from './solution/solution.component';
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'solutions', component: SolutionsComponent},
-  {path: 'solution', component: SolutionComponent},
-  {path: 'solution/:id', component: SolutionComponent},
+
+  {path: 'solutions/solution/:id', component: SolutionComponent},
   {path: '**', component: NotFoundComponent},
 ];
 

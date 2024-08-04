@@ -18,7 +18,6 @@ export class SolutionsComponent implements OnInit, OnDestroy {
   solutions: Solution[] = [];
 
 
-
   solutionId: any;
   paramsObservable: any;
   passedQueryParam = '';
@@ -46,7 +45,7 @@ export class SolutionsComponent implements OnInit, OnDestroy {
 
 
   onSelectSolution(id: number) {
-    this.router.navigate(['/solution', id])
+    this.router.navigate(['/solutions/solution', id])
 
 
   }

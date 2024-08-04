@@ -8,7 +8,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 })
 export class HeaderComponent {
 
-  title = 'GodaDev';
+  title = '';
   logo = 'assets/images/logo.png';
   menu = [
     {
